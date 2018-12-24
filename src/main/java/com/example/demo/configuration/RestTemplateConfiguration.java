@@ -40,7 +40,7 @@ public class RestTemplateConfiguration {
         if (interceptors == null) {
             // restTemplate.setInterceptors(Collections.singletonList(new ClientRequestInterceptor()));
         } else {
-            interceptors.add(new RequestSyncInterceptor());
+            interceptors.add(new ServiceRequestInterceptor());
             restTemplate.setInterceptors(interceptors);
         }
     }

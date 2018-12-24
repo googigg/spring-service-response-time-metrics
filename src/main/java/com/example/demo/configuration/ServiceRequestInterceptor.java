@@ -15,7 +15,7 @@ This class for measuring Service (call to) response time
 */
 
 
-public class RequestSyncInterceptor implements ClientHttpRequestInterceptor {
+public class ServiceRequestInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
