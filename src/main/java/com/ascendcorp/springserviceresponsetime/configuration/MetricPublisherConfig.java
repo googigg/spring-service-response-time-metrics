@@ -1,10 +1,8 @@
-package com.example.demo.configuration;
+package com.ascendcorp.springserviceresponsetime.configuration;
 
 import io.micrometer.core.instrument.Metrics;
 import io.micrometer.core.instrument.Tags;
-import io.prometheus.client.CollectorRegistry;
-import io.prometheus.client.Counter;
-import io.prometheus.client.Gauge;
+
 
 public class MetricPublisherConfig {
 

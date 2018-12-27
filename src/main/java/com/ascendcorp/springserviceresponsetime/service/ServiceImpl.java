@@ -1,6 +1,5 @@
-package com.example.demo.service;
+package com.ascendcorp.springserviceresponsetime.service;
 
-import com.example.demo.dto.ServiceResponseTimeConfig;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -8,19 +7,14 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 @Service
 public class ServiceImpl {
 
     private RestTemplate restTemplate;
 
-    private ServiceResponseTimeConfig groupedUrlConfig;
-
-    public ServiceImpl(@Qualifier("restTemplate") RestTemplate restTemplate, ServiceResponseTimeConfig groupedUrlConfig) {
+    public ServiceImpl(@Qualifier("restTemplate") RestTemplate restTemplate) {
 
         this.restTemplate = restTemplate;
-
-        this.groupedUrlConfig = groupedUrlConfig;
     }
 
     public ResponseEntity<String> welcome() {
@@ -40,7 +34,7 @@ public class ServiceImpl {
             e.printStackTrace();
         }
 
-        return ResponseEntity.ok("welcome");
+        return ResponseEntity.ok("default welcome API return to you");
     }
 }
 

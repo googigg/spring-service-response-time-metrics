@@ -1,5 +1,4 @@
-package com.example.demo.configuration;
-
+package com.ascendcorp.springserviceresponsetime.configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

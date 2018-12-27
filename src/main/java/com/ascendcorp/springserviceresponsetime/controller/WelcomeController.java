@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.ascendcorp.springserviceresponsetime.controller;
 
-import com.example.demo.service.ServiceImpl;
+import com.ascendcorp.springserviceresponsetime.service.ServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

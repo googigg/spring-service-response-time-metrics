@@ -1,6 +1,6 @@
-package com.example.demo.configuration;
+package com.ascendcorp.springserviceresponsetime.configuration;
 
-import com.example.demo.dto.ServiceResponseTimeConfig;
+import com.ascendcorp.springserviceresponsetime.dto.ServiceResponseTimeConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
