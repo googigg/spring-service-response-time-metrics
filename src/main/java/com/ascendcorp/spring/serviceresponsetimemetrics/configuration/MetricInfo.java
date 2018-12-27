@@ -1,4 +1,4 @@
-package com.ascendcorp.springserviceresponsetime.configuration;
+package com.ascendcorp.spring.serviceresponsetimemetrics.configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.ascendcorp.springserviceresponsetime.configuration;
+package com.ascendcorp.spring.serviceresponsetimemetrics.configuration;
 
-import com.ascendcorp.springserviceresponsetime.dto.ServiceResponseTimeConfig;
+import com.ascendcorp.spring.serviceresponsetimemetrics.dto.ServiceResponseTimeConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;

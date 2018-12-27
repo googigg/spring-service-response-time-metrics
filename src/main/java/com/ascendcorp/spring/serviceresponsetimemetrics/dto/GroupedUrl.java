@@ -1,4 +1,4 @@
-package com.ascendcorp.springserviceresponsetime.dto;
+package com.ascendcorp.spring.serviceresponsetimemetrics.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

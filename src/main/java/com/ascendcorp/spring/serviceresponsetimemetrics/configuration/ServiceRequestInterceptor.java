@@ -1,6 +1,6 @@
-package com.ascendcorp.springserviceresponsetime.configuration;
+package com.ascendcorp.spring.serviceresponsetimemetrics.configuration;
 
-import com.ascendcorp.springserviceresponsetime.dto.GroupedUrl;
+import com.ascendcorp.spring.serviceresponsetimemetrics.dto.GroupedUrl;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;

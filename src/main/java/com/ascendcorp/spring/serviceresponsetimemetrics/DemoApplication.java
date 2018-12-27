@@ -1,4 +1,4 @@
-package com.ascendcorp.springserviceresponsetime;
+package com.ascendcorp.spring.serviceresponsetimemetrics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

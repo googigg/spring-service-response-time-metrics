@@ -1,4 +1,4 @@
-package com.ascendcorp.springserviceresponsetime.configuration;
+package com.ascendcorp.spring.serviceresponsetimemetrics.configuration;
 
 import io.micrometer.core.instrument.Metrics;
 import io.micrometer.core.instrument.Tags;

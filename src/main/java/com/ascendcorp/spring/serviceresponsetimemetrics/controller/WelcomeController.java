@@ -1,6 +1,6 @@
-package com.ascendcorp.springserviceresponsetime.controller;
+package com.ascendcorp.spring.serviceresponsetimemetrics.controller;
 
-import com.ascendcorp.springserviceresponsetime.service.ServiceImpl;
+import com.ascendcorp.spring.serviceresponsetimemetrics.service.ServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

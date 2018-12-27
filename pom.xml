@@ -3,18 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>spring1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.ascendcorp</groupId>
+	<artifactId>spring-service-response-time-metrics</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>spring1</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-service-response-time-metrics</name>
+	<description>To publish individual service response time metrics</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<!-- <version>1.5.18.RELEASE</version> -->
 		<version>2.0.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
@@ -26,7 +25,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -56,38 +54,10 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Micro Meter -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
-
-		<!--
-		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_spring_boot</artifactId>
-			<version>0.0.26</version>
-		</dependency>
-		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_hotspot</artifactId>
-			<version>0.0.26</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_servlet</artifactId>
-			<version>0.0.26</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.prometheus</groupId>
-			<artifactId>simpleclient_pushgateway</artifactId>
-			<version>0.0.26</version>
-		</dependency>
-
-		-->
-
 	</dependencies>
 
 	<build>
@@ -98,6 +68,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
