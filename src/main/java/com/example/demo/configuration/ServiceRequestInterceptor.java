@@ -1,11 +1,18 @@
 package com.example.demo.configuration;
 
+import com.example.demo.dto.GroupedUrl;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.util.AntPathMatcher;
 
 import java.io.IOException;
+import java.net.URI;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.regex.Pattern;
 
 
 /*
@@ -14,22 +21,56 @@ This class for measuring Service (call to) response time
 
 */
 
-
 public class ServiceRequestInterceptor implements ClientHttpRequestInterceptor {
 
+    private final AntPathMatcher matcher = new AntPathMatcher();
+    private List<GroupedUrl> groupedList;
+
+    public ServiceRequestInterceptor(List<GroupedUrl> groupedList) {
+        this.groupedList = groupedList;
+    }
+
     @Override
-    public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
+    public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) {
 
-        long startAtTime = System.currentTimeMillis();
+        ClientHttpResponse response = null;
+        try {
+            LocalTime start = LocalTime.now();
+            response = clientHttpRequestExecution.execute(httpRequest, bytes);
+            String regexUrl = toRegexPath(httpRequest.getURI());
 
-        ClientHttpResponse response = clientHttpRequestExecution.execute(httpRequest, bytes);
+            MetricInfo metricInfo = new MetricInfo(regexUrl, response.getRawStatusCode(), Duration.between(start, LocalTime.now()).toMillis());
+            MetricPublisherConfig.publish(metricInfo);
 
-        long completedTime = System.currentTimeMillis() - startAtTime;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return response;
+        }
+    }
 
-        String label = httpRequest.getURI().getRawSchemeSpecificPart();
-        String expected = "0";
-        MetricPublisherConfig.getInstance().getServiceRequestResponseTimeGauge().labels(label, String.valueOf(response.getStatusCode()), expected).set(completedTime);
+    private String toRegexPath(URI uri) {
+        final String fullPath = uri.toString();
 
-        return response;
+        for(GroupedUrl url : groupedList) {
+            if(isMatch(fullPath, createRegexForURL(url.getUrl()))) return createRegexForURL(url.getUrl());
+        }
+
+        return fullPath;
+    }
+
+    private static String createRegexForURL(String path) {
+        String regex = "/\\{\\w*\\}";
+        return path.replaceAll(regex, "/.*");
+    }
+
+    private static boolean isMatch(String path, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(path).matches();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(createRegexForURL("http://www.mocky.io/v2/.*"));
+        System.out.println(isMatch("http://www.mocky.io/v2/5b31c0e7310000703a1293ad?mocky-delay=2500ms", createRegexForURL("http://www.mocky.io/v2/.*")));
     }
 }

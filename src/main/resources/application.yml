@@ -5,22 +5,25 @@ management:
         include: info, health, prometheus, metrics
       base-path: /
       path-mapping:
-        health: /health
-        info: /info
-        # prometheus: /metrics
+        health: s1/health
+        info: s1/info
+        prometheus: /metrics
         metrics: /actuator/metrics
   security:
-      enabled: false
-  health:
-    defaults:
-      enabled: true
+    enabled: false
 
 server:
   port: 8080
 
+service-response-time:
+  grouped-urls:
+    - url: http://www.google.com
+    - url: http://www.mocky.io/v2/.*
+
+
 # prometheus
-endpoints:
-  prometheus:
-    path: metrics
-  metrics:
-    enabled: false
+#endpoints:
+#  prometheus:
+#    path: metrics
+#  metrics:
+#    enabled: false

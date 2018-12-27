@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.ServiceResponseTimeConfig;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,13 @@ public class ServiceImpl {
 
     private RestTemplate restTemplate;
 
-    public ServiceImpl(@Qualifier("restTemplate") RestTemplate restTemplate) {
+    private ServiceResponseTimeConfig groupedUrlConfig;
+
+    public ServiceImpl(@Qualifier("restTemplate") RestTemplate restTemplate, ServiceResponseTimeConfig groupedUrlConfig) {
 
         this.restTemplate = restTemplate;
+
+        this.groupedUrlConfig = groupedUrlConfig;
     }
 
     public ResponseEntity<String> welcome() {
@@ -24,12 +29,6 @@ public class ServiceImpl {
                 .build()
                 .encode();
         try {
-            // List<ClientHttpRequestInterceptor> requestInterceptors = new ArrayList<>();
-            // requestInterceptors.add(new PerfRequestSyncInterceptor());
-
-            // RestTemplate restTemplate = new RestTemplate();
-            // restTemplate.setInterceptors(requestInterceptors);
-
             ResponseEntity<String> response = restTemplate.getForEntity(uriComponents.toUri(), String.class);
 
             if (response != null) {

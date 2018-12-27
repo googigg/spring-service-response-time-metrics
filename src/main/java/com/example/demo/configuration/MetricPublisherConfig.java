@@ -1,29 +1,18 @@
 package com.example.demo.configuration;
 
+import io.micrometer.core.instrument.Metrics;
+import io.micrometer.core.instrument.Tags;
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
 
 public class MetricPublisherConfig {
-	public static CollectorRegistry registry = CollectorRegistry.defaultRegistry;
 
-    // register prometheus
-    private final Gauge apiProcessingTime = Gauge.build().namespace("my_gauge").name("api").labelNames("api", "status_code", "isexpect").help("Hello").register(registry);
+	private static String NAMESPACE = "spring_response_time_ms";
 
-    private final Gauge serviceRequestResponseTime = Gauge.build().namespace("my_gauge").name("service").labelNames("service", "status_code", "isexpect").help("Hello").register(registry);
-
-
-    private static MetricPublisherConfig INSTANCE = new MetricPublisherConfig();
-
-    public static MetricPublisherConfig getInstance() {
-        return INSTANCE;
-    }
-
-    public Gauge getAPIProcessingTimeGauge() {
-        return apiProcessingTime;
-    }
-
-    public Gauge getServiceRequestResponseTimeGauge() {
-        return serviceRequestResponseTime;
+    public static void publish(MetricInfo metricInfo) {
+        System.out.println("***********" + metricInfo.getEndpoint());
+        // Gauge.build().namespace("my_gauge").name("service").labelNames("service", "status_code", "isexpect").help("Hello").register(registry);
+        Metrics.gauge(NAMESPACE, Tags.of("status", Integer.toString(metricInfo.getHttpStatus()), "uri", metricInfo.getEndpoint()), metricInfo.getDurationInMilliSec());
     }
 }

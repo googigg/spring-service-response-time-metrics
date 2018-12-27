@@ -1,5 +1,6 @@
 package com.example.demo.configuration;
 
+import com.example.demo.dto.ServiceResponseTimeConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
@@ -32,7 +33,10 @@ public class RestTemplateConfiguration {
 
     private static final String TLS_VERSION = "TLSv1";
 
-    public RestTemplateConfiguration() {
+    private ServiceResponseTimeConfig serviceResponseTimeConfig;
+
+    public RestTemplateConfiguration(ServiceResponseTimeConfig serviceResponseTimeConfig) {
+        this.serviceResponseTimeConfig = serviceResponseTimeConfig;
     }
 
     private void setClientRequestInterceptorToInterceptor(RestTemplate restTemplate) {
@@ -40,7 +44,7 @@ public class RestTemplateConfiguration {
         if (interceptors == null) {
             // restTemplate.setInterceptors(Collections.singletonList(new ClientRequestInterceptor()));
         } else {
-            interceptors.add(new ServiceRequestInterceptor());
+            interceptors.add(new ServiceRequestInterceptor(serviceResponseTimeConfig.getGroupedUrls()));
             restTemplate.setInterceptors(interceptors);
         }
     }
