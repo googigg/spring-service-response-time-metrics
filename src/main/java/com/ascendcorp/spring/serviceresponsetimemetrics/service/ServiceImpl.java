@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.ascendcorp.spring.serviceresponsetimemetrics.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
 
 @Service
 public class ServiceImpl {
@@ -24,12 +23,6 @@ public class ServiceImpl {
                 .build()
                 .encode();
         try {
-            // List<ClientHttpRequestInterceptor> requestInterceptors = new ArrayList<>();
-            // requestInterceptors.add(new PerfRequestSyncInterceptor());
-
-            // RestTemplate restTemplate = new RestTemplate();
-            // restTemplate.setInterceptors(requestInterceptors);
-
             ResponseEntity<String> response = restTemplate.getForEntity(uriComponents.toUri(), String.class);
 
             if (response != null) {
@@ -41,7 +34,7 @@ public class ServiceImpl {
             e.printStackTrace();
         }
 
-        return ResponseEntity.ok("welcome");
+        return ResponseEntity.ok("default welcome API return to you");
     }
 }
 
