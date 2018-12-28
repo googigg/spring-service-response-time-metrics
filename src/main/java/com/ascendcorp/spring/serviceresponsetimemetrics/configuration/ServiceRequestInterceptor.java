@@ -66,9 +66,4 @@ public class ServiceRequestInterceptor implements ClientHttpRequestInterceptor {
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(path).matches();
     }
-
-    public static void main(String[] args) {
-        System.out.println(createRegexForURL("http://www.mocky.io/v2/.*"));
-        System.out.println(isMatch("http://www.mocky.io/v2/5b31c0e7310000703a1293ad?mocky-delay=2500ms", createRegexForURL("http://www.mocky.io/v2/.*")));
-    }
 }
