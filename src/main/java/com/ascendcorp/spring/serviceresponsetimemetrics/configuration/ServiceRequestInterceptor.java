@@ -5,7 +5,6 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.util.AntPathMatcher;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,13 +16,12 @@ import java.util.regex.Pattern;
 
 /*
 
-This class for measuring Service (call to) response time
+This class purpose for measuring Service (call to) response time
 
 */
 
 public class ServiceRequestInterceptor implements ClientHttpRequestInterceptor {
 
-    private final AntPathMatcher matcher = new AntPathMatcher();
     private List<GroupedUrl> groupedList;
 
     public ServiceRequestInterceptor(List<GroupedUrl> groupedList) {
